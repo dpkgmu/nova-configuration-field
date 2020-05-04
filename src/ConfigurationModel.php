@@ -29,7 +29,7 @@ class ConfigurationModel extends Model
      */
     public function getConnectionName()
     {
-        return config('ofc-congiguration.connection', $this->connection);
+        return config('ofc-configuration.connection', $this->connection);
     }
 
     /**
