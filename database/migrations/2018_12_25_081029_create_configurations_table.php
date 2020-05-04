@@ -6,6 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateConfigurationsTable extends Migration
 {
+    
+    public function getConnection()
+    {
+        return config('ofc-configuration.connection', $this->connection);
+    }
+    
     /**
      * Run the migrations.
      *
@@ -13,8 +19,7 @@ class CreateConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::connection(config('ofc-configuration.connection', 'default'))
-            ->create('configurations', function (Blueprint $table) {
+        Schema::create('configurations', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('scope');
                 $table->string('key');
@@ -29,7 +34,6 @@ class CreateConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schemaconnection(config('ofc-configuration.connection', 'default'))
-            ->dropIfExists('configurations');
+        Schema::dropIfExists('configurations');
     }
 }
