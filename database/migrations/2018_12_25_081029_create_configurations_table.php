@@ -13,12 +13,13 @@ class CreateConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('configurations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('scope');
-            $table->string('key');
-            $table->string('value')->nullable();
-        });
+        Schema::connection(config('ofc-configuration.connection', 'default'))
+            ->create('configurations', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('scope');
+                $table->string('key');
+                $table->string('value')->nullable();
+            });
     }
 
     /**
@@ -28,6 +29,7 @@ class CreateConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configurations');
+        Schemaconnection(config('ofc-configuration.connection', 'default'))
+            ->dropIfExists('configurations');
     }
 }
