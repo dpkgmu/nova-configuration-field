@@ -21,6 +21,16 @@ class ConfigurationModel extends Model
     protected $table = 'configurations';
 
     public $timestamps = false;
+    
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string|null
+     */
+    public function getConnectionName()
+    {
+        return config('ofc-congiguration.connection', $this->connection);
+    }
 
     /**
      * Get the key.
